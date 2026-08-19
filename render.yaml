@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: abdon-lloydjedrick
+    runtime: docker
+    repo: https://github.com/jed-996/abdon-lloydjedrick-lavalust
+    branch: main
+    plan: free
+    region: singapore
+    autoDeployTrigger: commit
+    healthCheckPath: /

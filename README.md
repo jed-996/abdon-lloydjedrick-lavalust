@@ -282,3 +282,10 @@ LavaLust Framework is open-source software licensed under the **[MIT License](ht
 - **GitHub Repository:** [https://github.com/ronmarasigan/lavalust](https://github.com/ronmarasigan/lavalust)
 - **Documentation:** [https://lavalust.netlify.app](https://lavalust.netlify.app)
 - **Report an Issue:** [https://github.com/ronmarasigan/lavalust/issues](https://github.com/ronmarasigan/lavalust/issues)
+
+## Render deployment
+
+This project includes a Docker-based Render configuration. Create a Render Web
+Service from this repository using the `main` branch and Docker runtime. Apache
+binds to Render's `PORT` environment variable (default `10000`), and pushes to
+`main` automatically trigger new deployments.
