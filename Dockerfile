@@ -1,6 +1,9 @@
 FROM php:8.3-apache
 
-RUN a2enmod rewrite headers
+RUN a2enmod rewrite headers \
+    && sed -ri '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf \
+    && printf 'ServerName localhost\n' > /etc/apache2/conf-available/servername.conf \
+    && a2enconf servername
 
 WORKDIR /var/www/html
 
