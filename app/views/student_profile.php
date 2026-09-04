@@ -39,7 +39,7 @@ $escape = static fn ($value) => htmlspecialchars((string) $value, ENT_QUOTES, 'U
 <main class="shell">
     <nav>
         <div class="brand">Student<span>Signal</span></div>
-        <div><a href="<?= $escape(site_url('student')) ?>">Home</a><a href="<?= $escape(site_url('student/profile')) ?>">Student Profile</a></div>
+        <div><a href="<?= $escape(site_url('student')) ?>">Home</a><a href="<?= $escape(site_url('student/profile')) ?>">Student Profile</a><a href="<?= $escape(site_url('users')) ?>">User Directory</a></div>
     </nav>
 
     <div class="status">StudentMiddleware access verified</div>
