@@ -19,10 +19,8 @@ $escape = static fn ($value) => htmlspecialchars((string) $value, ENT_QUOTES, 'U
         .brand span { color:var(--lava); }
         nav a { color:var(--ink); text-decoration:none; margin-left:18px; font-size:.92rem; }
         nav a:hover { color:var(--cyan); }
-        .eyebrow { margin-top:58px; color:var(--cyan); font:700 .78rem ui-monospace,monospace; letter-spacing:.18em; text-transform:uppercase; }
-        h1 { margin:12px 0 14px; font-size:clamp(2.6rem,7vw,5rem); line-height:.96; letter-spacing:-.055em; }
+        h1 { margin:58px 0 30px; font-size:clamp(2.6rem,7vw,5rem); line-height:.96; letter-spacing:-.055em; }
         h1 em { color:var(--lava); font-style:normal; }
-        .lead { margin:0 0 30px; color:var(--muted); line-height:1.7; }
         .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:20px; background:rgba(17,24,39,.94); box-shadow:0 28px 70px rgba(0,0,0,.35); }
         table { width:100%; min-width:780px; border-collapse:collapse; }
         th,td { padding:18px 20px; text-align:left; border-bottom:1px solid var(--line); }
@@ -32,7 +30,7 @@ $escape = static fn ($value) => htmlspecialchars((string) $value, ENT_QUOTES, 'U
         td:first-child { color:var(--lava); font-weight:900; }
         .username { color:var(--cyan); }
         .empty { padding:34px; text-align:center; color:var(--muted); }
-        @media (max-width:760px) { nav { align-items:flex-start; } nav a { display:block; margin:5px 0 0 12px; } .eyebrow { margin-top:42px; } }
+        @media (max-width:760px) { nav { align-items:flex-start; } nav a { display:block; margin:5px 0 0 12px; } h1 { margin-top:42px; } }
     </style>
 </head>
 <body>
@@ -45,9 +43,7 @@ $escape = static fn ($value) => htmlspecialchars((string) $value, ENT_QUOTES, 'U
             <a href="<?= $escape(site_url('users')) ?>">User Directory</a>
         </div>
     </nav>
-    <div class="eyebrow">Laboratory 4 / Aiven MySQL</div>
     <h1>User <em>Directory</em></h1>
-    <p class="lead">Records retrieved dynamically through UsersController, UsersModel, and the model's all() method.</p>
     <section class="table-wrap">
         <?php if ($users): ?>
             <table>
