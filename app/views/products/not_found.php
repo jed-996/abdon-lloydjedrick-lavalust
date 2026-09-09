@@ -1,0 +1,1 @@
+<?php $title = 'Product not found'; require APP_DIR . 'views/products/header.php'; ?><section class="card empty"><h1>Product not found</h1><p>This product may have already been removed.</p><a class="button primary" href="<?= site_url('products') ?>">Back to products</a></section><?php require APP_DIR . 'views/products/footer.php'; ?>

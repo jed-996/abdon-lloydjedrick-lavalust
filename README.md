@@ -1,3 +1,7 @@
+# Stockroom - Laboratory Exercise No. 5
+
+See [setup, deployment, and submission instructions](LABORATORY-5.md).
+
 # LavaLust Framework
 
 > A lightweight, fast PHP framework built for developers who want clean MVC architecture without unnecessary complexity or performance overhead.

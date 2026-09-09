@@ -1,10 +1,31 @@
 services:
   - type: web
-    name: abdon-lloydjedrick
+    name: stockroom-lavalust
     runtime: docker
-    repo: https://github.com/jed-996/abdon-lloydjedrick-lavalust
-    branch: main
     plan: free
-    region: singapore
-    autoDeployTrigger: commit
-    healthCheckPath: /
+    healthCheckPath: /health.php
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_DRIVER
+        value: mysql
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: defaultdb
+      - key: DB_SSL_REQUIRED
+        value: "true"
+      - key: DB_SSL_CA
+        value: /var/www/html/certs/ca.pem
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD_HASH
+        sync: false

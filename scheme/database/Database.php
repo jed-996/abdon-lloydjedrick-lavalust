@@ -268,16 +268,15 @@ class Database {
             PDO::ATTR_EMULATE_PREPARES   => false,
         );
 
-        $ssl_ca = isset($database_config['ssl_ca'])
-            ? trim((string) $database_config['ssl_ca'])
-            : '';
-        if ($driver === 'mysql' && $ssl_ca !== '' && defined('PDO::MYSQL_ATTR_SSL_CA')) {
-            $options[PDO::MYSQL_ATTR_SSL_CA] = $ssl_ca;
-            if (defined('PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT')) {
-                $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = true;
+        if ($driver === 'mysql' && !empty($database_config['ssl_required'])) {
+            $ca = $database_config['ssl_ca'] ?? '';
+            if (!$ca || !is_readable($ca)) {
+                throw new RuntimeException('Set DB_SSL_CA to a readable Aiven CA certificate.');
             }
+            $options[PDO::MYSQL_ATTR_SSL_CA] = $ca;
+            $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = true;
         }
-
+        $options[PDO::ATTR_TIMEOUT] = 10;
         try {
             $this->db = new PDO($dsn, $username, $password, $options);
             $this->driver = $this->db->getAttribute(PDO::ATTR_DRIVER_NAME);

@@ -136,6 +136,15 @@ class Errors
 	 */
 	public function show_database_error($message, $sql = '', $bindings = [], $exception = null, $template = 'error_db')
 	{
+        if (PHP_SAPI === 'cli') {
+            throw new RuntimeException('Database operation failed. Check the connection configuration.');
+        }
+        if (config_item('environment') === 'production') {
+            http_response_code(503);
+            header('Content-Type: text/plain; charset=UTF-8');
+            exit('The database is temporarily unavailable. Please try again later.');
+        }
+
 		$template_path = config_item('error_view_path');
 		if (empty($template_path)) {
 			$template_path = APP_DIR . 'views/errors/';

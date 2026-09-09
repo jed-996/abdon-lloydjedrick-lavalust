@@ -1,21 +1,12 @@
 FROM php:8.3-apache
-
-RUN docker-php-ext-install pdo_mysql \
-    && a2enmod rewrite headers \
-    && sed -ri '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf \
-    && printf 'ServerName localhost\n' > /etc/apache2/conf-available/servername.conf \
-    && a2enconf servername
-
+RUN apt-get update && apt-get install -y --no-install-recommends libonig-dev ca-certificates \
+ && docker-php-ext-install pdo_mysql mbstring \
+ && a2enmod rewrite \
+ && rm -rf /var/lib/apt/lists/*
 WORKDIR /var/www/html
-
-COPY . /var/www/html
-
-RUN chmod +x /var/www/html/render-start.sh \
-    && chown -R www-data:www-data /var/www/html/runtime \
-    && chmod -R 775 /var/www/html/runtime
-
-ENV PORT=10000
-
-EXPOSE 10000
-
-CMD ["/var/www/html/render-start.sh"]
+COPY . .
+COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
+RUN chmod +x docker/start.sh \
+ && printf 'display_errors=Off\nlog_errors=On\nexpose_php=Off\n' > /usr/local/etc/php/conf.d/production.ini
+EXPOSE 80
+CMD ["sh", "docker/start.sh"]

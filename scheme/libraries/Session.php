@@ -221,6 +221,11 @@ class Session {
 		//check lock
         $this->security_check_lock($ip, $fingerprint);
 
+        // Honor the configured file-session directory before starting PHP sessions.
+        if ($this->config['sess_driver'] === 'file' && !empty($this->config['sess_save_path'])) {
+            session_save_path($this->config['sess_save_path']);
+        }
+
         // Start session
         $existing_session = !empty($_COOKIE[$this->config['cookie_name']]);
         session_start();

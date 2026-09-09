@@ -1,0 +1,16 @@
+<?php $title = $editing ? 'Edit product' : 'Add product'; require APP_DIR . 'views/products/header.php'; ?>
+<a class="back-link" href="<?= site_url('products') ?>">&larr; Back to products</a>
+<div class="page-heading"><div><p class="eyebrow">PRODUCT CATALOG</p><h1><?= $title ?></h1><p class="muted"><?= $editing ? 'Keep your product details and stock up to date.' : 'Give your new product a place in the catalog.' ?></p></div></div>
+<div class="form-grid"><section class="card form-card"><h2>Product details</h2><p class="muted">Fields marked with * are required.</p>
+<?php if ($errors): ?><div class="alert error" role="alert">Please correct the highlighted fields before saving.</div><?php endif; ?>
+<form method="post" action="<?= site_url($editing ? 'products/edit/' . (int) $product['id'] : 'products/create') ?>">
+<?= product_csrf_field() ?>
+<label for="product_name">Product name *</label><input id="product_name" name="product_name" maxlength="100" required value="<?= product_escape($product['product_name']) ?>" placeholder="e.g. Wireless keyboard" <?= isset($errors['product_name']) ? 'aria-invalid="true" aria-describedby="product_name-error"' : '' ?>>
+<?php if (isset($errors['product_name'])): ?><p class="field-error" id="product_name-error"><?= product_escape($errors['product_name']) ?></p><?php endif; ?>
+<label for="description">Description <span class="optional">Optional</span></label><textarea id="description" name="description" rows="4" placeholder="A few useful details about this product…" <?= isset($errors['description']) ? 'aria-invalid="true" aria-describedby="description-error"' : '' ?>><?= product_escape($product['description']) ?></textarea>
+<?php if (isset($errors['description'])): ?><p class="field-error" id="description-error"><?= product_escape($errors['description']) ?></p><?php endif; ?>
+<div class="field-row"><div><label for="price">Price (PHP) *</label><input id="price" name="price" type="number" min="0" max="99999999.99" step="0.01" required value="<?= product_escape($product['price']) ?>" placeholder="0.00" <?= isset($errors['price']) ? 'aria-invalid="true" aria-describedby="price-error"' : '' ?>><?php if (isset($errors['price'])): ?><p class="field-error" id="price-error"><?= product_escape($errors['price']) ?></p><?php endif; ?></div>
+<div><label for="quantity">Quantity *</label><input id="quantity" name="quantity" type="number" min="0" max="2147483647" step="1" required value="<?= product_escape($product['quantity']) ?>" <?= isset($errors['quantity']) ? 'aria-invalid="true" aria-describedby="quantity-error"' : '' ?>><?php if (isset($errors['quantity'])): ?><p class="field-error" id="quantity-error"><?= product_escape($errors['quantity']) ?></p><?php endif; ?></div></div>
+<div class="form-actions"><a class="button subtle" href="<?= site_url('products') ?>">Cancel</a><button class="button primary" type="submit"><?= $editing ? 'Save changes' : 'Add product' ?></button></div>
+</form></section><aside class="tip"><span class="pill">GOOD TO KNOW</span><h2>A useful catalog starts with the details.</h2><p>Choose a clear product name, set the price per unit, and enter the quantity currently available.</p><hr><p>Products with five units or fewer are marked as low stock so you can spot them at a glance.</p></aside></div>
+<?php require APP_DIR . 'views/products/footer.php'; ?>

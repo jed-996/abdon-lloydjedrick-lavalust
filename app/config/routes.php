@@ -44,7 +44,21 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 */
 /** @var object $router **/
 
-$router->get('/', 'Welcome::index');
+$router->get('/', 'AuthController::index');
+$router->get('/welcome', 'Welcome::index');
 $router->get('/student', 'StudentController::index');
 $router->get('/student/profile', 'StudentController::profile')->middleware('student');
 $router->get('/users', 'UsersController::index');
+
+$router->get('/login', 'AuthController::login');
+$router->post('/login', 'AuthController::login');
+$router->group(['middleware' => 'auth'], function ($router) {
+ $router->post('/logout', 'AuthController::logout');
+ $router->get('/products', 'ProductController::index');
+ $router->get('/products/create', 'ProductController::create');
+ $router->post('/products/create', 'ProductController::create');
+ $router->get('/products/edit/{id}', 'ProductController::edit')->where_number('id');
+ $router->post('/products/edit/{id}', 'ProductController::edit')->where_number('id');
+ $router->get('/products/delete/{id}', 'ProductController::delete')->where_number('id');
+ $router->post('/products/delete/{id}', 'ProductController::delete')->where_number('id');
+});
