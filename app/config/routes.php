@@ -55,6 +55,7 @@ $router->post('/login', 'AuthController::login');
 $router->group(['middleware' => 'auth'], function ($router) {
  $router->post('/logout', 'AuthController::logout');
  $router->get('/products', 'ProductController::index');
+ $router->get('/products/database-evidence', 'ProductController::database_evidence');
  $router->get('/products/create', 'ProductController::create');
  $router->post('/products/create', 'ProductController::create');
  $router->get('/products/edit/{id}', 'ProductController::edit')->where_number('id');

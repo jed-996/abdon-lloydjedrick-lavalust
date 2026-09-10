@@ -19,6 +19,13 @@ class ProductController extends Controller {
         $this->call->view('products/index', compact('products', 'notice'));
     }
 
+    public function database_evidence() {
+        $products = $this->ProductModel->listing();
+        $columns = $this->ProductModel->columns();
+        $database = $this->ProductModel->database_identity();
+        $this->call->view('products/database_evidence', compact('products', 'columns', 'database'));
+    }
+
     private function find_product($id) {
         if (!ctype_digit((string) $id) || (float) $id > 2147483647 || !($product = $this->ProductModel->find((int) $id))) {
             http_response_code(404);

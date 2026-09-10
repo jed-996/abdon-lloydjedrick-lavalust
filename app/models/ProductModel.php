@@ -11,6 +11,15 @@ class ProductModel extends Model {
         return $this->db->table($this->table)->order_by('id', 'DESC')->get_all();
     }
 
+    public function columns() {
+        return $this->db->raw('SHOW COLUMNS FROM products')->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function database_identity() {
+        return $this->db->raw('SELECT DATABASE() AS database_name, @@hostname AS server_name, VERSION() AS version')
+            ->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function validate(array $data) {
         $errors = [];
         if ($data['product_name'] === '' || mb_strlen($data['product_name']) > 100) {
