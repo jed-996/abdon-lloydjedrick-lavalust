@@ -66,8 +66,8 @@ File sessions fit this single-instance laboratory deployment. A restart requires
 
 ## Submission checklist
 
-- GitHub repository: https://github.com/jed-996/abdon-lloydjedrick-lavalust
-- Selected Render application: https://abdon-lloydjedrick-lavalust.onrender.com
+- GitHub repository: https://github.com/jed-996/abdon-lloydjedrick-lavalusr
+- Selected Render application: https://abdon-lloydjedrick-lavalusr.onrender.com
 - Screenshots: login, product list, add form, edit form, delete confirmation/success, and the Aiven products table.
 - Verify signed-out access redirects to login and signed-in CRUD persists in Aiven.
 

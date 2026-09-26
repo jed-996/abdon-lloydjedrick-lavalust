@@ -1,12 +1,14 @@
 services:
   - type: web
-    name: stockroom-lavalust
+    name: abdon-lloydjedrick-lavalusr
     runtime: docker
     plan: free
     healthCheckPath: /health.php
     envVars:
       - key: APP_ENV
         value: production
+      - key: APP_URL
+        value: https://abdon-lloydjedrick-lavalusr.onrender.com
       - key: APP_KEY
         generateValue: true
       - key: DB_DRIVER
