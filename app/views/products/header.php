@@ -7,6 +7,19 @@
 <link rel="stylesheet" href="<?= product_escape(rtrim(BASE_URL, '/') . '/assets/stockroom.css') ?>">
 </head>
 <body>
-<header class="topbar"><a class="brand" href="<?= site_url('products') ?>"><span class="brand-icon">S</span> Stockroom<span class="brand-sub">INVENTORY MANAGER</span></a>
-<?php if (!empty($_SESSION['product_user'])): ?><div class="account"><span><?= product_escape($_SESSION['product_user']) ?></span><form method="post" action="<?= site_url('logout') ?>"><?= product_csrf_field() ?><button class="button subtle" type="submit">Sign out</button></form></div><?php endif; ?></header>
+<header class="topbar">
+  <a class="brand" href="<?= site_url('student') ?>">Student<span class="brand-accent">Signal</span></a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a href="<?= site_url('student') ?>">Home</a>
+    <a href="<?= site_url('student/profile?access_code=ABDON-F2-2026') ?>">Student Profile</a>
+    <a href="<?= site_url('users') ?>">User Directory</a>
+    <a class="active" href="<?= site_url('products') ?>">Stockroom</a>
+  </nav>
+  <?php if (!empty($_SESSION['product_user'])): ?>
+    <div class="account">
+      <span><?= product_escape($_SESSION['product_user']) ?></span>
+      <form method="post" action="<?= site_url('logout') ?>"><?= product_csrf_field() ?><button class="button subtle" type="submit">Sign out</button></form>
+    </div>
+  <?php endif; ?>
+</header>
 <main class="shell">

@@ -1,6 +1,6 @@
 <?php $title = 'Aiven database evidence'; require APP_DIR . 'views/products/header.php'; ?>
 <a class="back-link" href="<?= site_url('products') ?>">&larr; Back to products</a>
-<section class="page-heading"><div><p class="eyebrow">LABORATORY EXERCISE NO. 5</p><h1>Aiven MySQL products table</h1><p class="muted">Live schema and rows queried through the deployed application.</p></div></section>
+<section class="page-heading"><div><p class="eyebrow">LABORATORY EXERCISE NO. 5</p><h1>Aiven MySQL <em>products</em> table</h1><p class="muted">Live schema and rows queried through the deployed application.</p></div></section>
 <section class="stats database-stats">
   <article class="stat card"><span>Database</span><strong><?= product_escape($database['database_name'] ?? '') ?></strong><small>Aiven service database</small></article>
   <article class="stat card"><span>Server</span><strong class="database-server"><?= product_escape($database['server_name'] ?? '') ?></strong><small>Remote MySQL host</small></article>

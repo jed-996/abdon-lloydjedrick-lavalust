@@ -2,7 +2,7 @@
 $totalQuantity = array_sum(array_column($products, 'quantity'));
 $lowStock = count(array_filter($products, static fn($p) => $p['quantity'] > 0 && $p['quantity'] <= 5));
 ?>
-<div class="page-heading"><div><p class="eyebrow">YOUR WORKSPACE</p><h1>Products</h1><p class="muted">A clear view of everything on your shelves.</p></div><a class="button primary" href="<?= site_url('products/create') ?>"><span aria-hidden="true">+</span> Add product</a></div>
+<div class="page-heading"><div><p class="eyebrow">YOUR WORKSPACE</p><h1>Product <em>Stockroom</em></h1><p class="muted">A clear view of everything on your shelves.</p></div><a class="button primary" href="<?= site_url('products/create') ?>"><span aria-hidden="true">+</span> Add product</a></div>
 <?php if ($notice): ?><div class="alert success" role="status"><?= product_escape($notice) ?></div><?php endif; ?>
 <div class="stats"><article class="card stat"><span>Total products</span><strong><?= count($products) ?></strong><small>In your catalog</small></article><article class="card stat"><span>Units in stock</span><strong><?= number_format($totalQuantity) ?></strong><small>Across all products</small></article><article class="card stat"><span>Low stock</span><strong><?= $lowStock ?></strong><small>Products with 1–5 units</small></article></div>
 <section class="card catalog"><div class="table-heading"><h2>Product catalog</h2><span class="muted"><?= count($products) ?> products</span></div>

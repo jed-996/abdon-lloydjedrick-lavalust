@@ -1,6 +1,6 @@
 <?php $title = $editing ? 'Edit product' : 'Add product'; require APP_DIR . 'views/products/header.php'; ?>
 <a class="back-link" href="<?= site_url('products') ?>">&larr; Back to products</a>
-<div class="page-heading"><div><p class="eyebrow">PRODUCT CATALOG</p><h1><?= $title ?></h1><p class="muted"><?= $editing ? 'Keep your product details and stock up to date.' : 'Give your new product a place in the catalog.' ?></p></div></div>
+<div class="page-heading"><div><p class="eyebrow">PRODUCT CATALOG</p><h1><?= $editing ? 'Edit' : 'Add' ?> <em>product</em></h1><p class="muted"><?= $editing ? 'Keep your product details and stock up to date.' : 'Give your new product a place in the catalog.' ?></p></div></div>
 <div class="form-grid"><section class="card form-card"><h2>Product details</h2><p class="muted">Fields marked with * are required.</p>
 <?php if ($errors): ?><div class="alert error" role="alert">Please correct the highlighted fields before saving.</div><?php endif; ?>
 <form method="post" action="<?= site_url($editing ? 'products/edit/' . (int) $product['id'] : 'products/create') ?>">
