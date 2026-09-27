@@ -13,9 +13,15 @@ class UsersController extends Controller
 
     public function index()
     {
+        try {
+            $users = $this->UsersModel->all();
+        } catch (Throwable $error) {
+            $users = [];
+        }
+
         $this->call->view('users_index', [
             'page_title' => "Lloyd's Student Signal",
-            'users' => $this->UsersModel->all(),
+            'users' => $users,
         ]);
     }
 }
