@@ -11,13 +11,8 @@ class UsersController extends Controller
 
     public function index()
     {
-        try {
-            $this->call->database();
-            $this->call->model('UsersModel');
-            $users = $this->UsersModel->all();
-        } catch (Throwable $error) {
-            $users = [];
-        }
+        // Laboratory 5 uses the products table; keep this sample directory available without a users table.
+        $users = [];
 
         $this->call->view('users_index', [
             'page_title' => "Lloyd's Student Signal",
