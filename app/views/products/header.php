@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title><?= product_escape($title ?? 'Products') ?> | Stockroom</title>
-<link rel="stylesheet" href="<?= product_escape(rtrim(BASE_URL, '/') . '/assets/stockroom.css') ?>">
+<link rel="stylesheet" href="<?= product_escape(rtrim(BASE_URL, '/') . '/assets/stockroom.css?v=20260927') ?>">
 </head>
 <body>
 <header class="topbar">
