@@ -49,6 +49,7 @@ $router->get('/welcome', 'Welcome::index');
 $router->get('/student', 'StudentController::index');
 $router->get('/student/profile', 'StudentController::profile')->middleware('student');
 $router->get('/users', 'UsersController::index');
+$router->get('/user', 'UsersController::index');
 
 $router->get('/login', 'AuthController::login');
 $router->post('/login', 'AuthController::login');
