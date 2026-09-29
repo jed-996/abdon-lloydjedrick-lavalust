@@ -8,7 +8,7 @@
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="<?= site_url('student') ?>">Student<span class="brand-accent">Signal</span></a>
+  <a class="brand" href="<?= site_url('products') ?>">Product<span class="brand-accent">Stockroom</span></a>
   <nav class="site-nav" aria-label="Primary navigation">
     <a class="active" href="<?= site_url('products') ?>">Stockroom</a>
   </nav>
