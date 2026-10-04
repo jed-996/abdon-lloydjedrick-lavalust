@@ -26,7 +26,7 @@ class ApiProductController extends Controller
 
     public function create()
     {
-        $this->authorize(true);
+        $this->authorize('write');
         $data = $this->product_data($this->api->body());
         $errors = $this->ProductModel->validate($data);
         if ($errors) {
@@ -42,7 +42,7 @@ class ApiProductController extends Controller
 
     public function update($id)
     {
-        $this->authorize(true);
+        $this->authorize('write');
         $product = $this->find_product($id);
         $input = $this->api->body();
         $data = $this->product_data(array_merge($product, $input));
@@ -60,16 +60,15 @@ class ApiProductController extends Controller
 
     public function delete($id)
     {
-        $this->authorize(true);
+        $this->authorize('delete');
         $product = $this->find_product($id);
         $this->ProductModel->delete((int) $product['id']);
         $this->api->respond(['message' => 'Product deleted successfully.']);
     }
 
-    private function authorize(bool $write = false): array
+    private function authorize(string $required = 'read'): array
     {
         $payload = $this->api->require_jwt();
-        $required = $write ? 'products:write' : 'products:read';
         if (!in_array($required, $payload['scopes'] ?? [], true)) {
             $this->api->respond_error('Forbidden', 403);
         }

@@ -33,7 +33,7 @@ class ApiAuthController extends Controller
         $tokens = $this->api->issue_tokens([
             'id' => (int) $user['id'],
             'role' => $user['role'],
-            'scopes' => ['products:read', 'products:write'],
+            'scopes' => ['read', 'write', 'delete'],
         ]);
 
         $this->api->respond([

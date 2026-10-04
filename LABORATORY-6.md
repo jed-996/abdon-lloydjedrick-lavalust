@@ -37,6 +37,7 @@ All product endpoints require `Authorization: Bearer <access_token>`.
 3. Initialize the database and migrations:
 
    ```bash
+   php lava jwt:generate
    php scripts/setup.php
    php lava migration run
    php lava migration status
@@ -75,7 +76,7 @@ php lava migration refresh
 
 Render builds the React app in a Node stage, copies it into `public/app`, and then starts the PHP/Apache service. On each deploy, `scripts/setup.php` creates missing tables without deleting data, seeds the API administrator from environment variables, and runs pending migrations.
 
-Required Render variables are documented in `.env.example`. Keep `DB_PASSWORD`, `ADMIN_PASSWORD_HASH`, `APP_KEY`, and any explicit JWT keys in Render only.
+Required Render variables are documented in `.env.example`. Keep `DB_PASSWORD`, `ADMIN_PASSWORD_HASH`, `APP_KEY`, `JWT_SECRET`, and `REFRESH_TOKEN_KEY` out of version control. Run `php lava jwt:generate` locally and set the generated keys in the Render service Environment settings before deploying. The API requires separate random values for both keys; replacing a key invalidates existing sessions.
 
 ## Submission screenshots
 

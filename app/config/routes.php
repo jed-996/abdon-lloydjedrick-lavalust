@@ -35,6 +35,13 @@ $router->put('/api/products/{id}', 'ApiProductController::update')->where_number
 $router->patch('/api/products/{id}', 'ApiProductController::update')->where_number('id');
 $router->delete('/api/products/{id}', 'ApiProductController::delete')->where_number('id');
 
+// Preflight requests must reach the API library before token checks.
+foreach (['/api/auth/login', '/api/auth/refresh', '/api/auth/logout', '/api/auth/me'] as $path) {
+    $router->options($path, 'ApiAuthController::me');
+}
+$router->options('/api/products', 'ApiProductController::index');
+$router->options('/api/products/{id}', 'ApiProductController::show')->where_number('id');
+
 // Companion migration exercise. The controller blocks these routes on production web requests.
 $router->get('/create-migration/{migration_class}', 'MigrationController::create_migration');
 $router->get('/migrate', 'MigrationController::migrate');
