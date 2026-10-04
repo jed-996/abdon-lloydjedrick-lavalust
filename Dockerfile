@@ -14,7 +14,8 @@ WORKDIR /var/www/html
 COPY . .
 COPY --from=frontend /frontend/dist /var/www/html/public/app
 COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
-RUN chmod +x docker/start.sh lava \
+RUN rm -f .htaccess \
+ && chmod +x docker/start.sh lava \
  && chmod -R a+rX public/app \
  && printf 'display_errors=Off\nlog_errors=On\nexpose_php=Off\n' > /usr/local/etc/php/conf.d/production.ini
 EXPOSE 80
