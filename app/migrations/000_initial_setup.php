@@ -12,7 +12,7 @@ class Initial_setup {
 
     public function up()
     {
-        if ($this->_lava->dbforge->table_exists('migrations')) {
+        if ($this->table_exists('migrations')) {
             return;
         }
 
@@ -45,5 +45,16 @@ class Initial_setup {
         // Dropping the migrations table would destroy all migration history
         // and break every subsequent rollback. Only drop manually if you
         // are wiping the entire database.
+    }
+
+    private function table_exists($table)
+    {
+        if (strtolower(database_config()['main']['driver'] ?? 'mysql') !== 'sqlite') {
+            return $this->_lava->dbforge->table_exists($table);
+        }
+        return (bool) $this->_lava->db->raw(
+            "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = ? LIMIT 1",
+            [$table]
+        )->fetchColumn();
     }
 }

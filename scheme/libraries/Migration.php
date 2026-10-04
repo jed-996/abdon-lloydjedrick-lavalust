@@ -95,6 +95,17 @@ class Migration {
     {
         $table = $this->migration_table;
 
+        if (strtolower(database_config()['main']['driver'] ?? 'mysql') === 'sqlite') {
+            $this->_lava->db->raw("
+                CREATE TABLE IF NOT EXISTS `{$table}` (
+                    `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+                    `migration` INTEGER NOT NULL UNIQUE,
+                    `applied_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                )
+            ");
+            return;
+        }
+
         $this->_lava->db->raw("
             CREATE TABLE IF NOT EXISTS `{$table}` (
                 `id`         INT      NOT NULL AUTO_INCREMENT,

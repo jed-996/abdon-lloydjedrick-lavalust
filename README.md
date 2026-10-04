@@ -1,6 +1,6 @@
-# Stockroom - Laboratory Exercise No. 5
+# Product Stockroom - Laboratory Exercises No. 5 and 6
 
-See [setup, deployment, and submission instructions](LABORATORY-5.md).
+Laboratory 6 adds an authenticated LavaLust JSON API and React client to the existing Stockroom project. See [Laboratory 6 setup, API, migration, and submission instructions](LABORATORY-6.md). The original [Laboratory 5 instructions](LABORATORY-5.md) remain available.
 
 # LavaLust Framework
 

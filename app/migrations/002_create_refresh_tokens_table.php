@@ -12,7 +12,7 @@ class Create_refresh_tokens_table {
 
     public function up()
     {
-        if ($this->_lava->dbforge->table_exists('refresh_tokens')) {
+        if ($this->table_exists('refresh_tokens')) {
             return;
         }
 
@@ -50,5 +50,16 @@ class Create_refresh_tokens_table {
     public function down()
     {
         $this->_lava->dbforge->drop_table('refresh_tokens');
+    }
+
+    private function table_exists($table)
+    {
+        if (strtolower(database_config()['main']['driver'] ?? 'mysql') !== 'sqlite') {
+            return $this->_lava->dbforge->table_exists($table);
+        }
+        return (bool) $this->_lava->db->raw(
+            "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = ? LIMIT 1",
+            [$table]
+        )->fetchColumn();
     }
 }
