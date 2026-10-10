@@ -23,7 +23,7 @@ $router->group(['middleware' => 'auth'], function ($router) {
     $router->post('/products/delete/{id}', 'ProductController::delete')->where_number('id');
 });
 
-// Laboratory 6 JSON API. Each product endpoint validates a bearer token.
+
 $router->post('/api/auth/login', 'ApiAuthController::login');
 $router->post('/api/auth/refresh', 'ApiAuthController::refresh');
 $router->post('/api/auth/logout', 'ApiAuthController::logout');
